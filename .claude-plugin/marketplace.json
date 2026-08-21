@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-marketplace.json",
+  "name": "claude-kitbag",
+  "description": "Scarabaeus' personal collection of Claude skills and plugins",
+  "owner": {
+    "name": "scarabaeus"
+  },
+  "metadata": {
+    "pluginRoot": "./plugins"
+  },
+  "plugins": [
+    {
+      "name": "kitbag-core",
+      "source": "kitbag-core",
+      "description": "Core personal skills",
+      "category": "productivity"
+    }
+  ]
+}
