@@ -5,15 +5,18 @@
   "owner": {
     "name": "scarabaeus"
   },
-  "metadata": {
-    "pluginRoot": "./plugins"
-  },
   "plugins": [
     {
       "name": "kitbag-core",
-      "source": "kitbag-core",
+      "source": "./plugins/kitbag-core",
       "description": "Core personal skills",
       "category": "productivity"
+    },
+    {
+      "name": "humanize",
+      "source": "./plugins/humanize",
+      "description": "Skill for rewriting AI-generated-sounding text into natural human prose",
+      "category": "writing"
     }
   ]
 }

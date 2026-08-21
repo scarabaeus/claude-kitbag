@@ -2,6 +2,13 @@
 
 Personal Claude skills and plugins, distributed as a plugin marketplace.
 
+## Implemented Skills/Plugins
+- `/humanize` - Rewrites AI-generated-sounding text into natural human prose. Usage: `/humanize <insert ai slop>`
+_Note: [AI detection tools](https://grammarly.com/ai-content-detector) currently flags output at about 10% to 20% AI-generated._
+
+## Planned Skills/Plugins
+- `/eli5` - "Explain like I'm 5" has Claude explain complex topics to me like I'm 5 years old. Usage: `/eli5 <insert complex topic>`
+
 ## Install
 
 In Claude Code:
@@ -14,6 +21,22 @@ In Claude Code:
 In claude.ai or Claude Desktop chat: **Customize → Plugins → Personal plugins →
 "+" → Add marketplace → Add from a repository**, then enter `scarabaeus/claude-kitbag`.
 
+For local testing before pushing anywhere, add by filesystem path instead:
+
+```
+/plugin marketplace add /path/to/claude-kitbag
+/plugin install humanize@claude-kitbag
+```
+
+No git commit or remote is required for a local path add.
+
+**When iterating on plugin content locally:** after editing files and running
+`/plugin marketplace update <name>`, an already-running session may not pick
+up the change — watch for a "Plugins changed, run `/reload-plugins`" notice
+and act on it (or just start a fresh session after updating). Skipping this
+means you can be testing stale content without any error or warning, which
+will silently invalidate before/after comparisons.
+
 ## Layout
 
 ```
@@ -21,20 +44,30 @@ claude-kitbag/
 ├── .claude-plugin/
 │   └── marketplace.json          # the catalog - lists every plugin
 └── plugins/
-    └── kitbag-core/
+    ├── kitbag-core/
+    │   ├── .claude-plugin/
+    │   │   └── plugin.json       # this plugin's manifest
+    │   └── skills/
+    │       └── example-skill/
+    │           └── SKILL.md      # one folder per skill
+    └── humanize/
         ├── .claude-plugin/
-        │   └── plugin.json       # this plugin's manifest
+        │   └── plugin.json
         └── skills/
-            └── example-skill/
-                └── SKILL.md      # one folder per skill
+            └── humanize/
+                ├── SKILL.md
+                ├── reference.md
+                └── scripts/
+                    └── scan.py
 ```
 
-`metadata.pluginRoot` is set to `./plugins` in the marketplace file, which is why
-each plugin's `source` is just its folder name rather than `./plugins/<name>`.
-
-## Planned Skills/Plugins
-- `/humanize` - Forces claude to output typical AI slop text output into more "natural sounding" human written text. For use in written communication shared with others.
-- `/eli5` - "Explain like I'm 5" has claude explain complex topics to me like I'm 5 years old. Usage: `/eli5 <insert complex topic>`
+Each plugin's `source` is the full path from the marketplace root:
+`./plugins/<name>`. (An earlier version of this file used `metadata.pluginRoot`
+to shorten `source` to a bare folder name — the docs describe this as valid,
+but the installed CLI ignored `pluginRoot` at install time and looked for the
+source directly under the marketplace root, failing with "Source path does not
+exist." Using the full `./plugins/<name>` path sidesteps that inconsistency
+entirely, so it's what this repo uses.)
 
 ## Adding a skill
 
