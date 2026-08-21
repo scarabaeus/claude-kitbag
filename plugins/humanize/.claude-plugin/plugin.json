@@ -1,0 +1,7 @@
+{
+  "name": "humanize",
+  "description": "Rewrites AI-sounding prose into more natural, human writing on request",
+  "author": {
+    "name": "scarabaeus"
+  }
+}
