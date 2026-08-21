@@ -33,7 +33,8 @@ claude-kitbag/
 each plugin's `source` is just its folder name rather than `./plugins/<name>`.
 
 ## Planned Skills/Plugins
-- `/humanize` - Forces claude to output typeical AI slop text output into more "natural sounding" human written text.
+- `/humanize` - Forces claude to output typical AI slop text output into more "natural sounding" human written text. For use in written communication shared with others.
+- `/eli5` - "Explain like I'm 5" has claude explain complex topics to me like I'm 5 years old. Usage: `/eli5 <insert complex topic>`
 
 ## Adding a skill
 
