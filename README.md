@@ -32,6 +32,9 @@ claude-kitbag/
 `metadata.pluginRoot` is set to `./plugins` in the marketplace file, which is why
 each plugin's `source` is just its folder name rather than `./plugins/<name>`.
 
+## Planned Skills/Plugins
+- `/humanize` - Forces claude to output typeical AI slop text output into more "natural sounding" human written text.
+
 ## Adding a skill
 
 Create a new folder under an existing plugin's `skills/` directory containing a
